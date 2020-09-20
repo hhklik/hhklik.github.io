@@ -6,6 +6,6 @@
 	<title>POSchapin</title>
 </head>
 <body>
-	<?php echo "Hola mundo poschapin"?>
+	<?php echo "Hola mundo poschapin 25"?>
 </body>
 </html>
