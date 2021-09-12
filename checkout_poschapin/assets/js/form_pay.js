@@ -2,6 +2,7 @@
 (function($){
 	var __front_to_back = true;
 	var ___pasteCard = false;
+    var ___auxDocument = '';
 	var selected_card = -1;
 
 		var nodo = {
@@ -512,8 +513,8 @@ $('.input-cart-number').on('keyup change', function(){
   })
 
   function CreatePDFfromHTML() {
-     var divContents = $(".voucher").html();//div which have to print
-     var printWindow = window.open('', '_blank', 'height=500,width=900');
+     /*var divContents = $(".voucher").html();//div which have to print
+     var printWindow = window.open('', '_blank', 'location=yes,height=500,width=900');
      printWindow.document.write('<html><head><title>voucher poschapin</title>');
      //printWindow.document.write('<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" >');//external styles
      //printWindow.document.write('<link rel="stylesheet" href="/css/custom.css" type="text/css"/>');
@@ -526,8 +527,25 @@ $('.input-cart-number').on('keyup change', function(){
      printWindow.onload=function(){
      printWindow.focus();                                         
      printWindow.print();
-     printWindow.close();
-     }
+     //printWindow.close();
+     }*/
+     
+    var divContents = $(".voucher").html();//div which have to print
+    //var printWindow = window.open('', '_blank', 'location=yes,height=500,width=900');
+    window.document.write('<html><head><title>voucher poschapin</title>');
+    //window.document.write('<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" >');//external styles
+    //window.document.write('<link rel="stylesheet" href="/css/custom.css" type="text/css"/>');
+    window.document.write('<link rel="stylesheet" href="./assets/css/voucher.css?v1.3.2" type="text/css"/>');
+    window.document.write('</head><body>');
+    window.document.write(divContents);
+    window.document.write('</body></html>');
+    window.document.close();
+
+    window.onload=function(){
+    window.focus();                                         
+    window.print();
+    //printWindow.close();
+    }
       /*var HTML_Width = $(".printer-ticket").width();
       var HTML_Height = $(".printer-ticket").height();
       var top_left_margin = 15;
