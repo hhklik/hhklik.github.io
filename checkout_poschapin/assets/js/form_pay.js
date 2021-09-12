@@ -501,11 +501,11 @@ $('.input-cart-number').on('keyup change', function(){
     
   });
   
-  setTimeout(function(){
+  /*setTimeout(function(){
     $('#card-ccv').focus().delay(1000).queue(function(){
       $(this).blur().dequeue();
     });
-  }, 500);
+  }, 500);*/
 
   $('#btn_pdf').click(function(){
   	CreatePDFfromHTML();

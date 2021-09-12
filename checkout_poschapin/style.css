@@ -424,10 +424,13 @@ body {
   .credit-card-box .card-expiration-date {
     font-size: 20px;
   }
-  /* .form fieldset input.input-cart-number,
-  .form fieldset .select.input-cart-number {
-    width: 75px;
-  } */
+  .credit-card-box .back .logo{
+    top:83%;
+  }
+  .credit-card-box .front .ccv label{
+    margin: -71px 0 0px;
+    color: #fff;
+  }
 }
 @media (max-width: 400px) {
   /*--------------------
@@ -470,6 +473,9 @@ body {
   }
   .form fieldset.fieldset-expiration {
     width: 70%;
+  }
+  .credit-card-box .back .logo{
+    top:83%;
   }
 }
 
