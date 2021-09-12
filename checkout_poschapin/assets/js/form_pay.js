@@ -513,7 +513,7 @@ $('.input-cart-number').on('keyup change', function(){
 
   function CreatePDFfromHTML() {
      var divContents = $(".voucher").html();//div which have to print
-     var printWindow = window.open('', '', 'height=500,width=900');
+     var printWindow = window.open('', '_blank', 'height=500,width=900');
      printWindow.document.write('<html><head><title>voucher poschapin</title>');
      //printWindow.document.write('<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" >');//external styles
      //printWindow.document.write('<link rel="stylesheet" href="/css/custom.css" type="text/css"/>');
