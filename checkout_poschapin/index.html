@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css?v1.3.2">
+    <link rel="stylesheet" href="./assets/css/voucher.css?v1.3.2">
+</head>
+
+<body>
+    <div class="stuckup">
+        <img src="./img/logo_poschapin.png" alt="">
+    </div>
+    <div class="padding_fix"></div>
+    <div class="checkout">
+        
+        <div class="full-width">
+            <img src="./img/logo_poschapin.png" style="margin-bottom:10px;max-height: 100px;" alt="">
+        </div>
+        
+        <form class="form" autocomplete="off" novalidate>
+            <div id="stepOne" class="step visible">
+                <h2>Información</h2>
+                <p>En Descripción colocar tu nombre, teléfono y torneo al que deseas participar. Si no ingresas estos
+                    datos no podremos agregarte a la mesa.</p>
+                <fieldset>
+                    <label for="description">Descripción</label>
+                    <input type="text" name="description" id="description" />
+                </fieldset>
+                <fieldset>
+                    <label for="dpi">DPI</label>
+                    <input type="number" name="dpi" min="0" id="dpi" placeholder="Ej: 221694030101" />
+                </fieldset>
+                <fieldset>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="ejemplo@ejemplo.com" />
+                </fieldset>
+
+                <div class="c-buttons">
+                    <button type="button" data-step="#stepTwo" class="btn">Siguiente</button>
+                </div>
+
+            </div>
+            <div id="stepTwo" class="step">
+                <div class="credit-card-box">
+                    <div class="flip">
+                        <div class="front">
+                            <div class="chip"></div>
+                            <div class="logo">
+                                <img class="bankid">
+                            </div>
+                            <div class="number">&#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF;</div>
+                            <div class="card-holder">
+                                <label>Nombre de Titular</label>
+                                <div></div>
+                            </div>
+                            <div class="card-expiration-date">
+                                <label>Vencimiento</label>
+                                <div></div>
+                            </div>
+                            <div class="ccv">
+                                <label>CCV</label>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="strip"></div>
+                            <div class="logo">
+                                <img class="bankid">
+                            </div>
+                            <div class="ccv">
+                                <label>CCV</label>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <fieldset>
+                    <label for="card-number">Número de tarjeta</label>
+                    <input type="num" name="card_number" id="card-number" class="input-cart-number" />
+                </fieldset>
+                <fieldset>
+                    <label for="card-holder">Nombre del Titular</label>
+                    <input type="text" name="first_name" id="card-holder" />
+                </fieldset>
+                <fieldset class="fieldset-expiration">
+                    <label for="card-expiration-month">Fecha de Vencimiento</label>
+                    <select id="card-expiration-month" class="select">
+                        <option></option>
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </select>
+                    <select id="card-expiration-year" class="select">
+                        <option></option>
+                        <option>2016</option>
+                        <option>2017</option>
+                        <option>2018</option>
+                        <option>2019</option>
+                        <option>2020</option>
+                        <option>2021</option>
+                        <option>2022</option>
+                        <option>2023</option>
+                        <option>2024</option>
+                        <option>2025</option>
+                    </select>
+                    <input type="hidden" id="ccexp" name="ccexp">
+                </fieldset>
+                <fieldset class="fieldset-ccv">
+                    <label for="card-ccv">CCV</label>
+                    <input type="text" name="cvv" id="card-ccv" class="ccv" maxlength="3" />
+                </fieldset>
+                <fieldset>
+                    <label for="card-mount">Monto ( <div class="currency currency_card_mount">GTQ</div> )</label>
+                    <input type="num" name="amount" id="card-mount"/>
+                </fieldset>
+                <fieldset>
+                    <div class="content_amount">
+                        <div class="currency">GTQ</div><div class="amount"><div>
+                    </div>
+                </fieldset>
+                <div class="c-buttons">
+                    <button type="button" data-step="#stepOne" class="btn">Atrás</button>
+                    <button type="submit" class="btn"><i class="fa fa-lock"></i>Pago</button>
+                </div>
+            </div>
+            <div id="stepThree" class="step">
+                <div class="voucher">
+                    <table id="to-pdf" class="printer-ticket">
+                      <thead>
+                        <tr>
+                          <th class="title" colspan="3">Victor Shop</th>
+                        </tr>
+                        <tr>
+                          <th colspan="3">Guatemala CA 17-09-2021 11:57:52</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="separator-title">
+                          <td class="yellow" colspan="3">Datos del cliente</td>
+                        </tr>
+                        <tr class="top">
+                          <td > Nombre:</td>
+                          <td >Carolina Rodriguez</td>
+                        </tr>
+                        <tr class="top">
+                          <td > Correo electronico:</td>
+                          <td >rodriguezcarolina086@gmail.com</td>
+                        </tr>
+                         <tr class="separator">
+                          <td class="yellow" colspan="3"></td>
+                        </tr>
+                        <tr class="top">
+                          <td class="logo" colspan="3" >
+                            <img src="https://poschapin.com/wp-content/assets/img/logo/logo_poschapin.png" >
+                          </td>
+                        </tr>
+                        <tr class="separator-title">
+                          <td class="blue" colspan="3">ESI School Manager</td>
+                        </tr>
+                        <tr class="top">
+                          <td > Billetera:</td>
+                          <td >c23ac6969949a72ba299712f2f6b16d5</td>
+                        </tr>
+                        <tr class="separator-title">
+                          <td class="blue" colspan="3">Transacción Aprobada - AuthNo: 168905</td>
+                        </tr>
+                        <tr class="top">
+                          <td >Fecha:</td>
+                          <td >20-08-2021 16:36:16</td>
+                        </tr>
+                        <tr class="top">
+                          <td >No. tarjeta:</td>
+                          <td >XXXX-XXXX-XXXX-4587</td>
+                        </tr>
+                        <tr class="top">
+                          <td >transaction:</td>
+                          <td >345356344</td>
+                        </tr>
+                        <tr class="top">
+                          <td >Auth:</td>
+                          <td >233243</td>
+                        </tr>
+                         <tr class="top">
+                          <td >Operation:</td>
+                          <td >poschapin__10687</td>
+                        </tr>
+                         <tr class="separator-title">
+                          <td class="blue" colspan="3">Numero de orden: 5585</td>
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr class="sup">
+                          <td colspan="3" align="center">
+                            <b>*** Pagado Electronicamente ***</b>
+                          </td>
+                        </tr>
+                        <tr class="sup">
+                          <td colspan="3" align="center">
+                            PosChapin Power By KlikTickets 
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                </div>
+                <div class="c-buttons">
+                    <button type="button" data-step="" id="btn_pdf" class="btn"><i class="fa fa-print"></i> Imprimir</button>
+                    <button type="button" class="btn"><i class="fa fa-sign-out-alt"></i> Salir</button>
+                </div>
+            </div>
+
+            <div id="stepFour" class="step">
+                <table class="aprobado">
+                    <thead>
+                        <th colspan="2">Transacción Aprobada</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Transacción</td>
+                            <td>5358522224</td>
+                        </tr>
+                        <tr>
+                            <td>Autorización</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Operación</td>
+                            <td>poschapin_401</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <table class="denegado">
+                    <thead>
+                        <th colspan="2">Transacción Denegada</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Transacción</td>
+                            <td>5358522224</td>
+                        </tr>
+                        <tr>
+                            <td>Autorización</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Operación</td>
+                            <td>poschapin_401</td>
+                        </tr>
+                        <tr>
+                            <td>Error</td>
+                            <td>Transaction error returned by prodessor</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="error">
+                    <thead>
+                        <th colspan="2">Transacción con Error</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Transacción</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Autorización</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Operación</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Error</td>
+                            <td>Transaction error returned by prodessor</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="full-width">
+                <img src="./img/TC.png" alt="">
+
+            </div>
+            <p>Todas las transacciones son encriptadas, informacion de la tarjeta nunca es almacenada.</p>
+            <div class="full-width" style="margin-top: 10px;">
+                <img src="./img/cs.png" alt="">
+                <img src="./img/siteseal_gd_3_h_l_m.gif" alt="">
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="./assets/js/form_pay.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+
+</body>
+
+</html>
+
+
