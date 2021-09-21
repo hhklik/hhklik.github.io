@@ -90,6 +90,7 @@
 	            __front_to_back = false;
 	            $('.front .ccv div').show().html("&#x25CF;&#x25CF;&#x25CF;&#x25CF;");
 	            $('.back .ccv').hide();
+                $('.front .ccv').show();
 	            $('.ccv').prop('maxLength', 4).val('');
 	        }else{
 	        	__front_to_back = true;
