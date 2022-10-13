@@ -72,7 +72,7 @@ $(function(){
 	default_index();
 
 	var changeDB = function(){
-		db.transaction(function (tx) {  
+		/*db.transaction(function (tx) {  
 	      tx.executeSql('SELECT U.rowid, U.name, U.email, U.status FROM USERS U', [], function (tx, results) {  
 	          var len = results.rows.length, i;  
 	          // document.getElementById("tblGrid").innerHTML = '';  
@@ -92,11 +92,36 @@ $(function(){
 	              str = '';  
 	      		}
 	      })
-	  }) 
+	  })*/ 
+
+	  db.query("SELECT U.rowid, U.name, U.email, U.status FROM USERS U", function(e){
+	  	if(typeof e.result !== 'undefined'){
+		  	$("#data_tbody").find("tr").remove();  
+		  	var str = '';  
+		  	for(var i = 0; i < e.result.rows.length; i++){
+	       	str += `
+	       		<tr>
+	       			<td>${e.result.rows[i].rowid}</td>
+							<td>${e.result.rows[i].name}</td>
+							<td>${e.result.rows[i].email}</td>
+							<td>${e.result.rows[i].status}</td>
+						</tr>
+	       	`
+	        document.getElementById("data_tbody").innerHTML += str;
+	        $('#maxRows').trigger('change');
+		      str = '';  
+
+		  	}
+		  }
+	  });
 	}
 
 	$(document).ready(function(){
-		db = openDatabase('nigma', '1.0', 'Test DB', 10 * 1024 * 1024); 
+		db = new Database({
+			name: "WebSQL_LiteEditor",
+			description: "Default Database",
+			size: 10 * 1024 * 1024 //10Mb
+		}); 
 		changeDB();
 	})
 
@@ -138,11 +163,21 @@ $(function(){
         console.log(db)
         //var nombre = "Carlos";
 	      //var correo = "abc@gmail.com";
-        db.transaction(function (tx) { 
+        db.query(`
+        	create table Customers (
+					   Id                   int                 ,
+					   FirstName            varchar(40)         not null,
+					   LastName             varchar(40)         not null,
+					   City                 varchar(40)         null,
+					   Country              varchar(40)         null,
+					   Phone                varchar(20)         null
+					);`, function(e){
+        });
+        /*db.transaction(function (tx) { 
         	tx.executeSql('DELETE FROM USERS'); 
           tx.executeSql('CREATE TABLE IF NOT EXISTS USERS (name, email, status)'); 
           tx.executeSql('INSERT INTO USERS (name, email, status) VALUES (?, ?, ?)', ["mario", "abc@gmail.com", 0]);
-        });
+        });*/
 	        reader.onload = function(e){
 
 	            csvResult = e.target.result.split(/\r|\n|\r\n/);
@@ -153,9 +188,9 @@ $(function(){
 	              	var csvLine = value.split(',');
 	              	var nombre = csvLine[0];
 	              	var correo = csvLine[1];
-	              	db.transaction(function (tx) {
+	              	/*db.transaction(function (tx) {
 	              		tx.executeSql('INSERT INTO USERS (name, email, status) VALUES (?, ?, ?)', [nombre, correo, 0]);
-	              	});
+	              	});*/
 	              	
 	              }
 	              	
