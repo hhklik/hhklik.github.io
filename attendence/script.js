@@ -72,7 +72,7 @@ $(function(){
 
 
 	var changeDB = function(){
-		var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024); 
+		var db = openDatabase('nigma', '1.0', 'Test DB', 2 * 1024 * 1024); 
 		db.transaction(function (tx) {  
 	      tx.executeSql('SELECT U.rowid, U.name, U.email, U.status FROM USERS U', [], function (tx, results) {  
 	          var len = results.rows.length, i;  
@@ -103,7 +103,7 @@ $(function(){
 	})
 
 	$('#deleteData').click(function(){
-		var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+		var db = openDatabase('nigma', '1.0', 'Test DB', 2 * 1024 * 1024);
 		db.transaction(function (tx) {  
 			tx.executeSql('DELETE FROM USERS');
 		})
@@ -123,12 +123,12 @@ $(function(){
     }
     if(csvFile != undefined){
         reader = new FileReader();
-       	//var db = openDatabase('mydb2', '1.0', 'Test DB', 2 * 1024 * 1024); 
-        /*var db = openDatabase('mydb2', '1.0', 'Test DB', 2 * 1024 * 1024); 
+       	//var db = openDatabase('nigma2', '1.0', 'Test DB', 2 * 1024 * 1024); 
+        /*var db = openDatabase('nigma2', '1.0', 'Test DB', 2 * 1024 * 1024); 
         db.transaction(function (tx) { 
            tx.executeSql('CREATE TABLE IF NOT EXISTS USERS (name, email, status)'); 
         });*/
-        var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024); 
+        var db = openDatabase('nigma', '1.0', 'Test DB', 2 * 1024 * 1024); 
         console.log(db)
         //var nombre = "Carlos";
 	      //var correo = "abc@gmail.com";
