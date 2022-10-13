@@ -166,10 +166,22 @@ $(function(){
 
 	$('#deleteData').click(function(){
 		//var db = openDatabase('nigma', '1.0', 'Test DB', 2 * 1024 * 1024);
-		db.transaction(function (tx) {  
-			tx.executeSql('DELETE FROM USERS');
-		})
-		changeDB();
+		var userselection = confirm("You really want to delete the information, it cannot be recovered?");
+		 
+		if (userselection == true){
+		 	db.query(`
+		 		DELETE FROM Users
+		 		`, function(e){
+		 	});
+		 	changeDB();
+			alert("Your information deleted!");
+		 
+		}else{
+		 
+			//alert("Your account is not deleted!");
+		 
+		}
+		
 	})
 
 
