@@ -93,7 +93,7 @@ $(function(){
 	      		}
 	      })
 	  })*/ 
-
+	  //${e.result.rows[i].status}
 	  db.query("SELECT U.rowid, U.name, U.email, U.status FROM USERS U", function(e){
 	  	if(typeof e.result !== 'undefined'){
 		  	$("#data_tbody").find("tr").remove();  
@@ -104,8 +104,14 @@ $(function(){
 	       			<td>${e.result.rows[i].rowid}</td>
 							<td>${e.result.rows[i].name}</td>
 							<td>${e.result.rows[i].email}</td>
-							<td>${e.result.rows[i].status}</td>
+							<td>
+								<div class="form-check form-switch">
+								  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+								  <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+								</div>
+							</td>
 						</tr>
+							
 	       	`
 	        document.getElementById("data_tbody").innerHTML += str;
 	        $('#maxRows').trigger('change');
@@ -164,13 +170,14 @@ $(function(){
         //var nombre = "Carlos";
 	      //var correo = "abc@gmail.com";
         db.query(`
-        	create table Customers (
-					   Id                   int                 ,
-					   FirstName            varchar(40)         not null,
-					   LastName             varchar(40)         not null,
-					   City                 varchar(40)         null,
-					   Country              varchar(40)         null,
-					   Phone                varchar(20)         null
+        	DELETE FROM Users
+        	`, function(e){
+        });
+        db.query(`
+        	create table IF NOT EXISTS Users (
+					   name            varchar(40)         not null,
+					   email                varchar(40)         null,
+					   status               varchar(2)          null
 					);`, function(e){
         });
         /*db.transaction(function (tx) { 
@@ -191,6 +198,10 @@ $(function(){
 	              	/*db.transaction(function (tx) {
 	              		tx.executeSql('INSERT INTO USERS (name, email, status) VALUES (?, ?, ?)', [nombre, correo, 0]);
 	              	});*/
+        	        db.query(`
+        	        	INSERT INTO USERS (name, email, status) VALUES ("${nombre}", "${correo}", "0")
+        	        	`, function(e){
+        	        });
 	              	
 	              }
 	              	
