@@ -129,6 +129,7 @@ $(function(){
            tx.executeSql('CREATE TABLE IF NOT EXISTS USERS (name, email, status)'); 
         });*/
         var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024); 
+        console.log(db)
         //var nombre = "Carlos";
 	      //var correo = "abc@gmail.com";
         db.transaction(function (tx) { 
@@ -142,7 +143,7 @@ $(function(){
 	            
 	            $.each( csvResult, function( key, value ) {
 	              if(value != ''){
-	              	//console.log(value)
+	              	console.log(value)
 	              	var csvLine = value.split(',');
 	              	var nombre = csvLine[0];
 	              	var correo = csvLine[1];
