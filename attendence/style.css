@@ -13,12 +13,15 @@ table tr:nth-child(even){
 
 th {
   background: #333;
-  color: #fff;
+  /*color: #fff;*/
 }
 
-.pagination {
+/*.pagination {
   margin: 0;
-}
+
+}*/
+
+
 
 .pagination li:hover{
     cursor: pointer;
@@ -56,6 +59,10 @@ th {
   .num_rows {
     width: 60%;
     float:left;
+  }
+  .pagination {
+      display: block;
+      float: left;
   }
 }
 .btn{

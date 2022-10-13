@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv ="Cache-Control" content ="no-cache"/>
   <title>CodePen - Pagination table with search option</title>
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+  <link rel='stylesheet' href='./bootstrap-5.0.2-dist/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -44,7 +44,7 @@
         </div>
       </div>
 
-<table class="table table-striped table-class" id= "table-id">
+<table class="table table-primary table-class" id= "table-id" data-available="1">
   
 	
 <thead>
@@ -58,14 +58,12 @@
 </table>
 
 <!--		Start Pagination -->
-			<div class='pagination-container'>
-				<nav>
-				  <ul class="pagination">
-				   <!--	Here the JS Function Will Add the Rows -->
-				  </ul>
-				</nav>
-			</div>
-      <div class="rows_count">Showing 11 to 20 of 91 entries</div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+   <!--	Here the JS Function Will Add the Rows -->
+  </ul>
+</nav>
+<div class="rows_count">Showing 11 to 20 of 91 entries</div>
 
 </div> <!-- 		End of Container -->
 
@@ -78,7 +76,7 @@
 <!--  Developed By Yasser Mas -->
 <!-- partial -->
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script><script  src="./script.js"></script>
+<script src='./bootstrap-5.0.2-dist/js/bootstrap.min.js'></script><script  src="./script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
 <script src="./database/db.min.js"></script>
 </body>

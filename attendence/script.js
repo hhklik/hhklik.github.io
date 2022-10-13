@@ -20,9 +20,11 @@ getPagination('#table-id');
 			 	var pagenum = Math.ceil(totalRows/maxRows);	// ceil total(rows/maxrows) to get ..  
 			 												//	numbers of pages 
 			 	for (var i = 1; i <= pagenum ;){			// for each page append pagination li 
-			 	$('.pagination').append('<li data-page="'+i+'">\
+			 	/*$('.pagination').append('<li data-page="'+i+'">\
 								      <span>'+ i++ +'<span class="sr-only">(current)</span></span>\
-								    </li>').show();
+								    </li>').show();*/
+			 	$('.pagination').append('<li data-page="'+i+'" class="page-item"><a class="page-link" href="#">'+ i++ +'</a></li>').show();
+			 	
 			 	}											// end for i 
      
          
@@ -72,33 +74,14 @@ $(function(){
 	default_index();
 
 	var changeDB = function(){
-		/*db.transaction(function (tx) {  
-	      tx.executeSql('SELECT U.rowid, U.name, U.email, U.status FROM USERS U', [], function (tx, results) {  
-	          var len = results.rows.length, i;  
-	          // document.getElementById("tblGrid").innerHTML = '';  
-	          $("#data_tbody").find("tr").remove();  
-	          var str = '';  
-	          for (i = 0; i < len; i++) {  
-	             	str += `
-	             		<tr>
-	             			<td>${results.rows.item(i).rowid}</td>
-										<td>${results.rows.item(i).name}</td>
-										<td>${results.rows.item(i).email}</td>
-										<td>${results.rows.item(i).status}</td>
-									</tr>
-	             	`
-	              document.getElementById("data_tbody").innerHTML += str;
-	              $('#maxRows').trigger('change');
-	              str = '';  
-	      		}
-	      })
-	  })*/ 
 	  //${e.result.rows[i].status}
-	  db.query("SELECT U.rowid, U.name, U.email, U.status FROM USERS U", function(e){
+
+	  db.query("SELECT U.rowid, U.name, U.email, U.status FROM USERS U ORDER BY U.status desc", function(e){
 	  	if(typeof e.result !== 'undefined'){
 		  	$("#data_tbody").find("tr").remove();  
 		  	var str = '';  
 		  	for(var i = 0; i < e.result.rows.length; i++){
+		  		var checked = (e.result.rows[i].status == '1') ? 'checked' : ''
 	       	str += `
 	       		<tr>
 	       			<td>${e.result.rows[i].rowid}</td>
@@ -106,8 +89,8 @@ $(function(){
 							<td>${e.result.rows[i].email}</td>
 							<td>
 								<div class="form-check form-switch">
-								  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-								  <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+								  <input class="form-check-input" type="checkbox" data-row="${i + 1}" id="flexSwitchCheckDefault" ${checked}>
+									<label class="form-check-label" for="flexSwitchCheckDefault"></label>
 								</div>
 							</td>
 						</tr>
@@ -115,7 +98,39 @@ $(function(){
 	       	`
 	        document.getElementById("data_tbody").innerHTML += str;
 	        $('#maxRows').trigger('change');
-		      str = '';  
+		      str = '';
+		      $('#data_tbody :checkbox').change(function() {
+		          if($('#table-id').data('available') == '1'){
+			          // this will contain a reference to the checkbox   
+			          $('#data_tbody :checkbox').removeClass('check-active')
+			          const rowid = $(this).data('row');
+			          $(this).addClass('check-active')
+
+			          if (this.checked) {
+			              $('#table-id').data('available','0')
+			              db.query(`UPDATE Users SET status=1 WHERE rowid=${rowid}`, function(e){
+			              	if(e.type == "success"){
+			              		$('#table-id').data('available','1')
+			              		//$('.check-active').removeClass('check-active')
+			              	}else{
+			              		$('#table-id').data('available','1')
+			              		$(".check-active").prop("checked", false);
+			              	}
+			              });
+			          } else {
+			              $('#table-id').data('available','0')
+			              db.query(`UPDATE Users SET status=0 WHERE rowid=${rowid}`, function(e){
+			              		if(e.type == "success"){
+			              			$('#table-id').data('available','1')
+			              			//$('.check-active').removeClass('check-active')
+			              		}else{
+			              			$('#table-id').data('available','1')
+			              			$(".check-active").prop('checked',true)
+			              		}
+			              });
+			          }
+			        }
+		      });  
 
 		  	}
 		  }
@@ -146,6 +161,8 @@ $(function(){
 		})
 		changeDB();
 	})
+
+
 	 
 
 
