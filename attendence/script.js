@@ -189,6 +189,8 @@ $(function(){
 
 	            csvResult = e.target.result.split(/\r|\n|\r\n/);
 	            
+	            var values = ''
+	            var cont = 0
 	            $.each( csvResult, function( key, value ) {
 	              if(value != ''){
 	              	console.log(value)
@@ -198,13 +200,21 @@ $(function(){
 	              	/*db.transaction(function (tx) {
 	              		tx.executeSql('INSERT INTO USERS (name, email, status) VALUES (?, ?, ?)', [nombre, correo, 0]);
 	              	});*/
-        	        db.query(`
-        	        	INSERT INTO USERS (name, email, status) VALUES ("${nombre}", "${correo}", "0")
-        	        	`, function(e){
-        	        });
+	              	if(cont == 0){
+	              		values += ` ("${nombre}", "${correo}", "0")`
+	              		cont = cont + 1
+	              	}else{
+	              		values += `,("${nombre}", "${correo}", "0")`
+	              	}
 	              	
 	              }
 	              	
+	            });
+	            db.query(`INSERT INTO USERS (name, email, status) VALUES ${values}`, function(e){
+            		if(e.type == "success"){
+            			alert('Data cargada')
+            			changeDB();
+            		}
 	            });
 	            //$('.csv').append(csvResult);
 	              }
@@ -213,7 +223,7 @@ $(function(){
         reader.readAsText(csvFile);
 
     }
-    alert('Data cargada')
+    
   });
 					
 });

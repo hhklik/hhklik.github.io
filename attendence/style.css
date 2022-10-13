@@ -46,3 +46,22 @@ th {
   text-align:right;
   color: #999;
 }
+
+/*table*/
+@media all and (max-width: 912px) {
+  .tb_search{
+    width: 100%;
+    float:none;
+  }
+  .num_rows {
+    width: 60%;
+    float:left;
+  }
+}
+.btn{
+  margin: 5px 6px 5px 5px !important;
+}
+
+
+
+

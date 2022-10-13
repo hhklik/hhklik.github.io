@@ -6,15 +6,6 @@
   <meta http-equiv ="Cache-Control" content ="no-cache"/>
   <title>CodePen - Pagination table with search option</title>
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
-  <script type="text/javascript">
-  	var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024); 
-
-  	db.transaction(function (tx) { 
-  	   tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (name, email, status)'); 
-  	   tx.executeSql('INSERT INTO LOGS (id, log) VALUES (1, "foobar")'); 
-  	   tx.executeSql('INSERT INTO LOGS (id, log) VALUES (2, "logmsg")'); 
-  	});
-  </script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -35,8 +26,13 @@
             <option value="5000">Show ALL Rows</option>
 						</select>
 			 			<button type="button" id="check_data" class="btn btn-primary form-control">Check Data</button>
-			 			<label for="filename">Example file input</label>
+			 			
+
+			 			<label for="filename">Insertar csv</label>
 			 			<input type="file" class="form-control-file" name="filename" id="filename"/>
+
+
+
 			 			<button type="button" id="upload" class="btn btn-success form-control">upload</button>
 			 			<button type="button" id="deleteData" class="btn btn-danger form-control">Eliminar data</button>
 
