@@ -134,6 +134,7 @@ $(function(){
         db.transaction(function (tx) { 
         	tx.executeSql('DELETE FROM USERS'); 
           tx.executeSql('CREATE TABLE IF NOT EXISTS USERS (name, email, status)'); 
+          tx.executeSql('INSERT INTO USERS (name, email, status) VALUES (?, ?, ?)', ["mario", "abc@gmail.com", 0]);
         });
 	        reader.onload = function(e){
 
