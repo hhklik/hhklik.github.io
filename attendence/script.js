@@ -111,7 +111,7 @@ $(function(){
 			              db.query(`UPDATE Users SET status=1 WHERE rowid=${rowid}`, function(e){
 			              	if(e.type == "success"){
 			              		$('#table-id').data('available','1')
-			              		//$('.check-active').removeClass('check-active')
+			              		checkAttendence()
 			              	}else{
 			              		$('#table-id').data('available','1')
 			              		$(".check-active").prop("checked", false);
@@ -122,7 +122,7 @@ $(function(){
 			              db.query(`UPDATE Users SET status=0 WHERE rowid=${rowid}`, function(e){
 			              		if(e.type == "success"){
 			              			$('#table-id').data('available','1')
-			              			//$('.check-active').removeClass('check-active')
+			              			checkAttendence()
 			              		}else{
 			              			$('#table-id').data('available','1')
 			              			$(".check-active").prop('checked',true)
@@ -144,9 +144,19 @@ $(function(){
 			size: 10 * 1024 * 1024 //10Mb
 		}); 
 		changeDB();
+		checkAttendence()
+
 	})
 
-	
+
+	var checkAttendence = function(){
+		db.query("SELECT COUNT(*) AS count FROM USERS U WHERE U.status = 1", function(e){
+	  	console.log(e)
+	  	if(typeof e.result !== 'undefined'){
+	  		$('#attendence').html(e.result.rows[0].count)
+	  	}
+	  })
+	}	
 
 	
 
